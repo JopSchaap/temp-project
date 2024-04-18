@@ -13,30 +13,39 @@ import kotlin.random.Random
 
 class MainFragment : Fragment() {
 
+    private lateinit var randomNumberTextView: TextView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val layout = LinearLayout(container?.context)
         val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        layout.orientation = LinearLayout.VERTICAL
+        layout.gravity = Gravity.CENTER
 
-        val button = Button(container?.context)
-        button.text = "Generate random numer"
-        button.layoutParams = layoutParams
+        // Create the button
+        val button = Button(requireContext())
+        button.text = "Generate random number"
+        button.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         button.setOnClickListener {
             // Generate a random number
             val randomNumber = Random.nextInt(1, 101)
 
-            // Create a TextView to display the random number
-            val textView = TextView(requireContext())
-            textView.text = randomNumber.toString()
-            textView.textSize = 48f
-            textView.gravity = Gravity.CENTER
-
-            // Clear existing views and add the TextView to the layout
-            layout.removeAllViews()
-            layout.addView(textView)
+            // Update the TextView with the random number
+            randomNumberTextView.text = randomNumber.toString()
         }
 
+        // Add the button to the layout
         layout.addView(button)
 
+        // Create the TextView to display the random number
+        randomNumberTextView = TextView(requireContext())
+        randomNumberTextView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        randomNumberTextView.textSize = 48f
+        randomNumberTextView.gravity = Gravity.CENTER
+        randomNumberTextView.text = " "
+
+        // Add the TextView to the layout
+        layout.addView(randomNumberTextView)
+
+        // Return the parent layout as the fragment's view
         return layout
     }
 }
