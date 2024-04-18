@@ -16,7 +16,6 @@ class MainFragment : Fragment() {
     private lateinit var randomNumberTextView: TextView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val layout = LinearLayout(container?.context)
-        val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         layout.orientation = LinearLayout.VERTICAL
         layout.gravity = Gravity.CENTER
 
